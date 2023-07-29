@@ -4,7 +4,7 @@
     sip.corp_id,
     sip.corp_name,
     sip.plan_verify,
-    sip.approve_by_id,
+    sip.approve_by_id,1
     sip.approve_by,
     sip.create_by,
     sip.create_date,
