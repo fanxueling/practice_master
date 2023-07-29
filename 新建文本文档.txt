@@ -8,7 +8,7 @@
     sip.approve_by,
     sip.create_by,
     sip.create_date,
-    sip.upt_by,
+    sip.upt_by,gf、
     sip.upt_date,
     sip.invoice_date,
     sip.invoice_file,
