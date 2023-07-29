@@ -10,7 +10,7 @@
     sip.create_date,
     sip.upt_by,gf、
     sip.upt_date,
-    sip.invoice_date,
+    sip.invoice_date,【】【】【】
     sip.invoice_file,
     sips.id plan_sub_id,
     sips.statement_order_id,
