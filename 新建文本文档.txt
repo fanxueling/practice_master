@@ -1,0 +1,89 @@
+ SELECT
+    sip.id  plan_id,
+    sip.plan_code,
+    sip.corp_id,
+    sip.corp_name,
+    sip.plan_verify,
+    sip.approve_by_id,
+    sip.approve_by,
+    sip.create_by,
+    sip.create_date,
+    sip.upt_by,
+    sip.upt_date,
+    sip.invoice_date,
+    sip.invoice_file,
+    sips.id plan_sub_id,
+    sips.statement_order_id,
+    sips.customer_id,
+    sips.customer,
+    sips.trader_id,
+    sips.trader_name,
+    sips.product_type,
+    sips.product_name,
+    sips.inv_spec,
+    sips.inv_stype,
+    sips.invoice_mny,
+    sips.invoice_weight,
+    sips.invoice_price,
+    sips.invoice_tax,
+    sips.unit,
+    sips.contract_no,
+    ss.id  statement_id,
+    ss.statement_code
+    FROM
+    so_invoice_plan sip
+    LEFT JOIN so_invoice_plan_sub sips ON sip.id = sips.plan_id
+    LEFT JOIN so_statement ss ON sip.id = ss.plan_id
+    WHERE
+    sip.del_flag = 0  and ss.del_flag = 0
+    <if test="customer!=null and customer!= ''">
+      and sips.customer like concat('%',#{customer,jdbcType = VARCHAR},'%')
+    </if>
+    <if test="traderName!=null and traderName!= ''">
+      and sips.trader_name like concat('%',#{traderName,jdbcType = VARCHAR},'%')
+    </if>
+    <if test="planCode!=null and planCode!= ''">
+      and sip.plan_code like concat('%',#{planCode,jdbcType = VARCHAR},'%')
+    </if>
+    <if test="productName!=null and productName!= ''">
+      and sips.product_name = #{productName}
+    </if>
+    <if test="beginDate!= null and beginDate!='' and  endDate != null and endDate!=''">
+      and sip.invoice_date between #{beginDate} and #{endDate}
+    </if>
+    group by sip.id
+  </select>
+
+
+
+ SELECT
+    sips.id plan_sub_id,
+    sips.statement_order_id,
+    sips.customer_id,
+    sips.customer,
+    sips.trader_id,
+    sips.trader_name,
+    sips.product_type,
+    sips.product_name,
+    sips.inv_spec,
+    sips.inv_stype,
+    sips.invoice_mny,
+    sips.invoice_weight,
+    sips.invoice_price,
+    sips.invoice_tax,
+    sips.unit,
+    sips.contract_no,
+    ss.id  statement_id,
+    ss.statement_code
+    FROM
+    so_invoice_plan sip
+    LEFT JOIN so_invoice_plan_sub sips ON sip.id = sips.plan_id
+    LEFT JOIN so_statement ss ON sip.id = ss.plan_id
+    WHERE
+    sip.del_flag = 0  and ss.del_flag = 0
+    <if test="id!=null and id!= ''">
+      and sips.id = #{id}
+    </if>
+  </select>
+
+
