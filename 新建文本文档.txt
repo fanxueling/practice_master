@@ -14,7 +14,7 @@
     sip.invoice_file,
     sips.id plan_sub_id,
     sips.statement_order_id,
-    sips.customer_id,
+    sips.customer_id,cc
     sips.customer,
     sips.trader_id,
     sips.trader_name,
